@@ -174,7 +174,6 @@
                 (~literal flvector?)
                 (~literal extflvector?)
                 (~literal fxvector?)
-                (~literal exact-rational?)
                 (~literal sequence?)
                 (~literal pseudo-random-generator?)
                 (~literal pseudo-random-generator-vector?)
@@ -188,6 +187,7 @@
                 (~literal port?)
                 (~literal path?)
                 (~literal path-for-some-system?)
+                (~literal complete-path?)
                 (~literal pair?)
                 (~literal list?)
                 (~literal placeholder?)
@@ -231,7 +231,7 @@
                 (~literal srcloc?)
                 (~literal module-path-index?)
                 (~literal module-path?)
-                
+
                 (~literal z:stx-obj?)
                 (~literal z:compilation-top?)
                 (~literal z:module-binding?)

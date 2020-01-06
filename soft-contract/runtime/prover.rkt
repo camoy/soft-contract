@@ -62,7 +62,7 @@
           [(∋ Ps (P:¬ 'values)) {set -ff}]
           [(and (∋ Ps 'values) (∋ Ps 'boolean?)) {set -tt}]
           [else {set (-● (set-filter P? Ps))}]))
-  
+
   (: ?concretize : P → (Option V^))
   (define ?concretize
     (match-lambda
@@ -455,8 +455,8 @@
       (if (and (equal? T₁ T₂) (not (ambiguous? T₁ Σ)))
           '✓
           ; TODO watch out for loops
-          (go-V^ (unpack T₁ Σ) (unpack T₂ Σ)))) 
-    
+          (go-V^ (unpack T₁ Σ) (unpack T₂ Σ))))
+
     (: go-V^ : V^ V^ → ?Dec)
     (define (go-V^ Vs₁ Vs₂) (sat^₂ go-V Vs₁ Vs₂))
 
@@ -607,7 +607,7 @@
   ;; Whether predicate `P` only covers base types
   (define (base-only? [P : V])
     (and (symbol? P) (not (memq P '(list? struct?)))))
-  
+
   (: bool->Dec : Boolean → Dec)
   (define (bool->Dec b) (if b '✓ '✗))
 
@@ -624,11 +624,11 @@
       ['exact-nonnegative-integer? {set 'exact? 'integer? (P:≥ -zero)}]
       ['exact-positive-integer? {set 'exact? 'integer? (P:> -zero)}]
       ['exact-integer? {set 'exact? 'integer?}]
-      ['exact-rational? {set 'exact? 'rational?}]
       ['positive? (P:> -zero)]
       ['negative? (P:< -zero)]
       ['zero? (P:= -zero)]
       ['index? {set 'fixnum? (P:≥ -zero)}]
+      ['exact-rational? {set 'exact?}]
       [(P:¬ 'even?) 'odd?]
       [(P:¬ 'odd?) 'even?]
       [(and P₀ (P:St acs P*))
@@ -673,7 +673,7 @@
           [(? α? α) (go-α α)]
           [(? T:@? T) (go* (unpack T Σ))]
           [_ '✗]))
-      
+
       (go V₀)))
 
   (: join-Dec : (U #t ?Dec) ?Dec → ?Dec)

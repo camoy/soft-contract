@@ -61,9 +61,7 @@
   (def-pred odd? (integer?))
   (def-pred exact? (number?))
   (def-pred inexact? (number?))
-  (def inexact->exact (number? . -> . exact?)
-    #:refinements
-    (real? . -> . exact-rational?))
+  (def inexact->exact (number? . -> . exact?))
   (def exact->inexact (number? . -> . inexact?)
     #:refinements
     (real? . -> . real?)
@@ -87,7 +85,6 @@
     (() #:rest (listof (>=/c 0)) . ->* . (>=/c 0))
     (() #:rest (listof (not/c positive?)) . ->* . (not/c positive?))
     (() #:rest (listof nonnegative?) . ->* . nonnegative?)
-    (() #:rest (listof exact-rational?) . ->* . exact-rational?)
     #:volatile? #f)
   (def - ((number?) #:rest (listof number?) . ->* . number?)
     #:refinements
@@ -97,7 +94,6 @@
     ((real?) #:rest (listof real?) . ->* . real?)
     (((<=/c 0)) #:rest (listof (>=/c 0)) . ->* . (<=/c 0))
     (((>=/c 0)) #:rest (listof (<=/c 0)) . ->* . (>=/c 0))
-    ((exact-rational?) #:rest (listof exact-rational?) . ->* . exact-rational?)
     #:volatile? #f)
 
   (def *
@@ -110,14 +106,12 @@
     (() #:rest (listof real?) . ->* . real?)
     (() #:rest (listof (>=/c 1)) . ->* . (>=/c 1))
     (() #:rest (listof (>=/c 0)) . ->* . (>=/c 0))
-    (() #:rest (listof exact-rational?) . ->* . exact-rational?)
     #:volatile? #f)
   (def / ((number?) #:rest (listof (and/c number? (or/c inexact? (not/c zero?)))) . ->* . number?)
     #:refinements
     ((real?) #:rest (listof real?) . ->* . real?)
     (((not/c zero?)) #:rest list? . ->* . (not/c zero?))
     (even? (=/c 2) . -> . exact-integer?)
-    ((exact-rational?) #:rest (listof exact-rational?) . ->* . exact-rational?)
     #:volatile? #f)
   (def* (quotient remainder modulo) ; FIXME: only error on exact 0
     (integer? (and/c integer? (not/c zero?)) . -> . integer?)

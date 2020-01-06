@@ -11,7 +11,7 @@
 (define-unit relations@
   (import prim-runtime^)
   (export)
-  
+
   (dec-implications
    ;; numbers
    [zero? ⇒ byte?]
@@ -26,13 +26,12 @@
    [float-complex? ⇒ number?]
    [nonnegative? ⇒ real?]
    [nonpositive? ⇒ real?]
-   
+   [exact-rational? ⇒ rational?]
+   [exact-rational? ⇒ exact?]
+
    [not ⇒ boolean?]
    [exact-integer? ⇒ integer?]
    [exact-integer? ⇒ exact?]
-   [exact-integer? ⇒ exact-rational?]
-   [exact-rational? ⇒ exact?]
-   [exact-rational? ⇒ rational?]
    [exact-nonnegative-integer? ⇒ exact-integer?]
    [exact-positive-integer? ⇒ positive?]
    [exact-positive-integer? ⇒ exact-nonnegative-integer?]
@@ -97,6 +96,7 @@
    ;; procedures
    [primitive? ⇒ procedure?]
    [path? ⇒ path-for-some-system?]
+   [complete-path? ⇒ path?]
    )
 
   (dec-exclusions

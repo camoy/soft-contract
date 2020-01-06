@@ -43,7 +43,7 @@
   (def-alias unsafe-fxmin min)
   (def-alias unsafe-fxmax max)
 
-  
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; 17.2 Unsafe Data Extraction
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -52,6 +52,9 @@
   (def-alias unsafe-vector-length vector-length)
   (def-alias unsafe-vector-ref vector-ref)
   (def-alias unsafe-vector-set! vector-set!)
+  (def-alias unsafe-vector*-length vector-length)
+  (def-alias unsafe-vector*-ref vector-ref)
+  (def-alias unsafe-vector*-set! vector-set!)
 
   (def (unsafe-struct-ref Σ ℓ W)
     #:init ([Vᵥ any/c] [Vᵢ integer?])
@@ -87,4 +90,3 @@
      (unpack Vᵥ Σ)))
 
   (def unsafe-struct-set! (any/c integer? . -> . void?)))
-
